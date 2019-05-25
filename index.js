@@ -26,8 +26,8 @@
     {
         this.load.image('sky', 'Assets/sky.png');
         this.load.image('ground', 'Assets/platform.png');
-        this.load.image('dude', 'Assets/dude.png');
-        this.load.image('icon', 'Assets/icon.png');
+        this.load.image('tegelane', 'Assets/tegelane.png');
+        this.load.image('bluestar', 'Assets/bluestar.png');
     }
 
     function create ()
@@ -42,7 +42,7 @@
         platforms.create(50, 250, 'ground');
         platforms.create(400, 100, 'ground');
 
-        player = this.physics.add.sprite(100, 450, 'rectangle');
+        player = this.physics.add.sprite(100, 450, 'tegelane');
 
         player.setCollideWorldBounds(true);
 
@@ -81,9 +81,9 @@
             // this.add.sprite(player.x + 50,player.y + 50, 'ground');
             console.log(player.x);
     		console.log(player.y);
-            platforms.create(player.x, player.y + 50, 'icon');
+            platforms.create(player.x, player.y + 50, 'bluestar');
             player.x = 100;
-            player.y = 450;
+            player.y = 500;
         }
     }
     
