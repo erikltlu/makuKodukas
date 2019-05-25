@@ -13,11 +13,13 @@
             preload: preload,
             create: create,
             update: update
-        }
+        },
+        canvas: document.getElementById("mang")
     };
 
     var player;
     var platforms;
+    var win;
     var cursors;
     var addplat;
     var game = new Phaser.Game(config);
@@ -28,6 +30,7 @@
         this.load.image('ground', 'Assets/platform.png');
         this.load.image('tegelane', 'Assets/tegelane.png');
         this.load.image('bluestar', 'Assets/bluestar.png');
+        this.load.image('win', 'Assets/greenstar.png');
     }
 
     function create ()
@@ -42,6 +45,9 @@
         platforms.create(50, 250, 'ground');
         platforms.create(400, 100, 'ground');
 
+        win = this.physics.add.staticGroup();
+        win.create(400, 60, 'win');
+
         player = this.physics.add.sprite(100, 450, 'tegelane');
 
         player.setCollideWorldBounds(true);
@@ -51,10 +57,14 @@
  
         addplat = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.C);
 
-
+        this.physics.add.overlap(player, win, winGame, null, this);
     }
 
-        
+    function winGame(player, win){
+    	win.disableBody(true, true);
+    	document.getElementById("level2").style.display = "block";
+    }
+
     function update ()
     {
         if (cursors.left.isDown)
@@ -84,6 +94,9 @@
             platforms.create(player.x, player.y + 50, 'bluestar');
             player.x = 100;
             player.y = 500;
+        }
+        if(win.touching){
+        	console.log("over");
         }
     }
     
