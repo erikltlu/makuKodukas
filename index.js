@@ -1,11 +1,11 @@
  var config = {
         type: Phaser.AUTO,
-        width: 800,
-        height: 600,
+        width: 1200,
+        height: 800,
         physics: {
             default: 'arcade',
             arcade: {
-                gravity: { y: 300 },
+                gravity: { y: 700 },
                 debug: false
             }
         },
@@ -36,7 +36,7 @@
 
         platforms = this.physics.add.staticGroup();
 
-        platforms.create(400, 568, 'ground').setScale(2).refreshBody();
+        platforms.create(400, 800, 'ground').setScale(4).refreshBody();
 
         platforms.create(600, 400, 'ground');
         platforms.create(50, 250, 'ground');
@@ -75,7 +75,7 @@
 
         if (cursors.up.isDown && player.body.touching.down)
         {
-            player.setVelocityY(-270);
+            player.setVelocityY(-400);
         }
         if (Phaser.Input.Keyboard.JustDown(addplat)){
             // this.add.sprite(player.x + 50,player.y + 50, 'ground');
